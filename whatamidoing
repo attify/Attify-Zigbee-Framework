@@ -1,0 +1,10 @@
+Okay, here goes, this tool i going to be a GUI for the killerbee framework.
+I'm going to focus on itegrating zbid, zbtumbler, zbreplay and zbdump for 
+starters. The work is pretty straight forward, the tools already exist, all
+i need to do is create a Qt Thread kind of a thing which calls invokes these 
+tools with the parameters and I want and give me the output back on the UI.
+
+And hopefully not screw up the output while it's at it. 
+
+Also I'll have to make sure that users use only one tool at once, because 
+if multiple tools try to claim the RZ it probably won't work out too well.
