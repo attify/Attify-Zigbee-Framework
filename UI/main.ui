@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>811</width>
+    <height>613</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Attify Zigbee Exploitation Tool</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>791</width>
+      <height>541</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>zbid</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_4">
+     <attribute name="title">
+      <string>zbstumbler</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>zbwireshark</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_3">
+     <attribute name="title">
+      <string>zbdump</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_5">
+     <attribute name="title">
+      <string>zbreplay</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_8">
+     <attribute name="title">
+      <string>zbpanidconflictflood</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_9">
+     <attribute name="title">
+      <string>zborphannotify</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_10">
+     <attribute name="title">
+      <string>zbrealign</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_12">
+     <attribute name="title">
+      <string>zbfakebeacon</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_11">
+     <attribute name="title">
+      <string>zbopenear</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_7">
+     <attribute name="title">
+      <string>zbassocflood</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_6">
+     <attribute name="title">
+      <string>zbconvert</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_13">
+     <attribute name="title">
+      <string>zbdsniff</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_14">
+     <attribute name="title">
+      <string>zbgoodfind</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_15">
+     <attribute name="title">
+      <string>zbwardrive</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_16">
+     <attribute name="title">
+      <string>zbscapy</string>
+     </attribute>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>811</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>Tools</string>
+    </property>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuView"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
