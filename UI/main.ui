@@ -26,82 +26,82 @@
     <property name="currentIndex">
      <number>0</number>
     </property>
-    <widget class="QWidget" name="tab">
+    <widget class="QWidget" name="zbid">
      <attribute name="title">
       <string>zbid</string>
      </attribute>
     </widget>
-    <widget class="QWidget" name="tab_4">
+    <widget class="QWidget" name="zbstumbler">
      <attribute name="title">
       <string>zbstumbler</string>
      </attribute>
     </widget>
-    <widget class="QWidget" name="tab_2">
+    <widget class="QWidget" name="zbwireshark">
      <attribute name="title">
       <string>zbwireshark</string>
      </attribute>
     </widget>
-    <widget class="QWidget" name="tab_3">
+    <widget class="QWidget" name="zbdump">
      <attribute name="title">
       <string>zbdump</string>
      </attribute>
     </widget>
-    <widget class="QWidget" name="tab_5">
+    <widget class="QWidget" name="zbreplay">
      <attribute name="title">
       <string>zbreplay</string>
      </attribute>
     </widget>
-    <widget class="QWidget" name="tab_8">
+    <widget class="QWidget" name="zbpanidconflictflood">
      <attribute name="title">
       <string>zbpanidconflictflood</string>
      </attribute>
     </widget>
-    <widget class="QWidget" name="tab_9">
+    <widget class="QWidget" name="zborphannotify">
      <attribute name="title">
       <string>zborphannotify</string>
      </attribute>
     </widget>
-    <widget class="QWidget" name="tab_10">
+    <widget class="QWidget" name="zbrealign">
      <attribute name="title">
       <string>zbrealign</string>
      </attribute>
     </widget>
-    <widget class="QWidget" name="tab_12">
+    <widget class="QWidget" name="zbfakebeacon">
      <attribute name="title">
       <string>zbfakebeacon</string>
      </attribute>
     </widget>
-    <widget class="QWidget" name="tab_11">
+    <widget class="QWidget" name="zbopenear">
      <attribute name="title">
       <string>zbopenear</string>
      </attribute>
     </widget>
-    <widget class="QWidget" name="tab_7">
+    <widget class="QWidget" name="zbassocflood">
      <attribute name="title">
       <string>zbassocflood</string>
      </attribute>
     </widget>
-    <widget class="QWidget" name="tab_6">
+    <widget class="QWidget" name="zbconvert">
      <attribute name="title">
       <string>zbconvert</string>
      </attribute>
     </widget>
-    <widget class="QWidget" name="tab_13">
+    <widget class="QWidget" name="zbdsniff">
      <attribute name="title">
       <string>zbdsniff</string>
      </attribute>
     </widget>
-    <widget class="QWidget" name="tab_14">
+    <widget class="QWidget" name="zbgoodfind">
      <attribute name="title">
       <string>zbgoodfind</string>
      </attribute>
     </widget>
-    <widget class="QWidget" name="tab_15">
+    <widget class="QWidget" name="zbwardrive">
      <attribute name="title">
       <string>zbwardrive</string>
      </attribute>
     </widget>
-    <widget class="QWidget" name="tab_16">
+    <widget class="QWidget" name="zbscapy">
      <attribute name="title">
       <string>zbscapy</string>
      </attribute>
