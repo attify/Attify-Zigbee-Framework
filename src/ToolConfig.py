@@ -31,7 +31,7 @@ class ToolConfig(QtGui.QWidget, Ui_Form):
 
 	def setup(self):
 		print("[*] Setting up Configuration Tool")
-		file=open("AZF.cfg")
+		file=open("cfg/tools.cfg")
 		while(True):
 			tab=file.readline().strip()
 			if(tab==""):
@@ -45,8 +45,8 @@ class ToolConfig(QtGui.QWidget, Ui_Form):
 
 	def SaveConfig(self):
 		print("[*] Saving new configuration ")
-		os.remove("AZF.cfg")
-		file=open("AZF.cfg","w")
+		os.remove("cfg/tools.cfg")
+		file=open("cfg/tools.cfg","w")
 		for i in self.controls.keys():
 			if(self.controls[i].isChecked()):
 				file.write("+"+i+"\n")
