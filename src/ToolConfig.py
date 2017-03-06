@@ -1,5 +1,6 @@
 from PyQt4 import QtCore, QtGui
 from UI.Config import Ui_Form
+from PyQt4.QtCore import SIGNAL
 import os
 
 class ToolConfig(QtGui.QWidget, Ui_Form):
@@ -26,7 +27,21 @@ class ToolConfig(QtGui.QWidget, Ui_Form):
 			"zbwardrive":self.checkBox_zbwardrive,
 			"zbscapy":self.checkBox_zbscapy,
 		}
+		self.setup()
 
+	def setup(self):
+		print("[*] Setting up Configuration Tool")
+		file=open("AZF.cfg")
+		while(True):
+			tab=file.readline().strip()
+			if(tab==""):
+				break
+			if '+' in tab:
+				tab=tab.replace('+','')
+				self.controls[tab].click()
+			else:
+				tab=tab.replace('-','')
+		file.close()
 
 	def SaveConfig(self):
 		print("[*] Saving new configuration ")
@@ -38,3 +53,6 @@ class ToolConfig(QtGui.QWidget, Ui_Form):
 			else:
 				file.write("-"+i+"\n")
 		file.close()
+                self.emit(SIGNAL('update_tools(int)'), 1)
+		self.close()
+
