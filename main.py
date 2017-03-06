@@ -1,6 +1,7 @@
 from PyQt4 import QtCore,QtGui
 from PyQt4.QtGui import QAction
 from PyQt4.QtCore import SIGNAL
+from src.RunTool import RunTool
 from src.ToolConfig import ToolConfig
 from UI.Main import Ui_MainWindow
 from UI.Config import Ui_Form
@@ -35,12 +36,14 @@ class ZBMain(Ui_MainWindow):
                         self.SetupTools()
                 self.actionTools.triggered.connect(self.ConfigureTools)
 		self.actionExit.triggered.connect(self.exit)
+		self.pushButton_zbidRefresh.clicked.connect(self.zbidRefresh)
+
 
 	def exit(self):
 		self.close()
 
 	def CheckTools(self):
-		file=open("AZF.cfg","r")
+		file=open("cfg/tools.cfg","r")
 		out=file.read()
 		file.close()
 		if("+" in out):
@@ -57,7 +60,7 @@ class ZBMain(Ui_MainWindow):
 
 	def SetupTools(self):
 		self.tabWidget.clear()
-		file=open("AZF.cfg","r")
+		file=open("cfg/tools.cfg","r")
 		while(True):
 			tab=file.readline().strip()
 			if tab=="":
@@ -65,12 +68,16 @@ class ZBMain(Ui_MainWindow):
 			if '+' in tab:
 				tab=tab.replace('+','')
 				self.tabWidget.addTab(self.toolkit[tab],QtCore.QString(tab))
-                               	print("[*] "+tab+" activated")
-			else:
-				tab=tab.replace('-','')
-				print("[*] "+tab+" deactivated")
 		file.close()
 
+	def zbidRefresh(self):
+		self.zbidThread=RunTool("zbid",None)
+		self.zbidThread.start()
+                QtCore.QObject.connect(self.zbidThread,QtCore.SIGNAL("update_zbid(QString)"), self.zbidOutput)
+
+	def zbidOutput(self,QString):
+		item = QtGui.QListWidgetItem(str(QString))
+		self.listWidget_zbid.addItem(item)
 
 if __name__=="__main__":
 	app=QtGui.QApplication(sys.argv)
