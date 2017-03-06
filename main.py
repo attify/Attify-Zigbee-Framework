@@ -1,4 +1,6 @@
 from PyQt4 import QtCore,QtGui
+from PyQt4.QtGui import QAction
+from PyQt4.QtCore import SIGNAL
 from src.ToolConfig import ToolConfig
 from UI.Main import Ui_MainWindow
 from UI.Config import Ui_Form
@@ -29,10 +31,13 @@ class ZBMain(Ui_MainWindow):
 			"zbwardrive":self.zbwardrive,
 			"zbscapy":self.zbscapy
 		}
-		if(self.CheckTools()==0):
-			self.ConfigureTools()
-		else:
-			self.SetupTools()
+                if(self.CheckTools()==1):
+                        self.SetupTools()
+                self.actionTools.triggered.connect(self.ConfigureTools)
+		self.actionExit.triggered.connect(self.exit)
+
+	def exit(self):
+		self.close()
 
 	def CheckTools(self):
 		file=open("AZF.cfg","r")
@@ -47,8 +52,11 @@ class ZBMain(Ui_MainWindow):
 		if self.config is None:
 			self.config=ToolConfig()
 		self.config.show()
+	        QtCore.QObject.connect(self.config,QtCore.SIGNAL("update_tools(int)"), self.SetupTools)
+
 
 	def SetupTools(self):
+		self.tabWidget.clear()
 		file=open("AZF.cfg","r")
 		while(True):
 			tab=file.readline().strip()
@@ -61,7 +69,7 @@ class ZBMain(Ui_MainWindow):
 			else:
 				tab=tab.replace('-','')
 				print("[*] "+tab+" deactivated")
-
+		file.close()
 
 
 if __name__=="__main__":
