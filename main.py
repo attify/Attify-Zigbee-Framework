@@ -37,6 +37,7 @@ class ZBMain(Ui_MainWindow):
                 self.actionTools.triggered.connect(self.ConfigureTools)
 		self.actionExit.triggered.connect(self.exit)
 		self.pushButton_zbidRefresh.clicked.connect(self.zbidRefresh)
+		self.pushButton_zbdumpCapture.clicked.connect(self.zbdumpCapture)
 
 
 	def exit(self):
@@ -78,6 +79,23 @@ class ZBMain(Ui_MainWindow):
 	def zbidOutput(self,QString):
 		item = QtGui.QListWidgetItem(str(QString))
 		self.listWidget_zbid.addItem(item)
+
+	def zbdumpCapture(self):
+		iface=str("-i "+self.lineEdit_zbdumpInterface.text()+" ")
+		channel=str("-c "+self.comboBox_zbdumpChannel.currentText()+" ")
+		count=str("-n "+self.lineEdit_zbdumpCount.text()+" ")
+		output=str("-w pcap/"+self.lineEdit_zbdumpOutput.text())
+		parameters=iface+channel+count+output
+		self.zbdumpThread=RunTool("zbdump",parameters)
+		self.zbdumpThread.start()
+                QtCore.QObject.connect(self.zbdumpThread,QtCore.SIGNAL("zbdump_complete(QString)"), self.zdumpOutput)
+
+
+	def zdumpOutput(self,QString):
+		print("[*] ZBDump complete ")
+
+
+
 
 if __name__=="__main__":
 	app=QtGui.QApplication(sys.argv)
