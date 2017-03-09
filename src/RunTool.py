@@ -20,7 +20,7 @@ class RunTool(QtCore.QThread):
 		self.terminate()
 
 	def run(self):
-		if(self.tool== "zbid"):
+		if(self.tool == "zbid"):
 			#proc = subprocess.Popen(...)
 			try:
 				output=subprocess.check_output(["python","killerbee/tools/zbid"])
@@ -34,5 +34,17 @@ class RunTool(QtCore.QThread):
 			except Exception as e:
 				print "[*] Exception : "+str(e)
 			self.emit(SIGNAL('update_zbid(QString)'),QtCore.QString(str(string)))
-			self.terminate()
+			self.close()
+
+		if(self.tool == "zbdump"):
+			try:
+				params=self.parameters.split(" ")
+				list=["python","killerbee/tools/zbdump"]+params
+				print(list)
+				output=subprocess.check_output(list)
+			except Exception as e:
+				output="Error"
+				print "[*] Exception : "+str(e)
+			self.emit(SIGNAL('zbdump_complete(QString)'),QtCore.QString(str(output)))
+			self.close()
 
