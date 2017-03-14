@@ -21,7 +21,6 @@ class RunTool(QtCore.QThread):
 
 	def run(self):
 		if(self.tool == "zbid"):
-			#proc = subprocess.Popen(...)
 			try:
 				output=subprocess.check_output(["python","killerbee/tools/zbid"])
 				output=output.replace("           Dev Product String       Serial Number","")
@@ -33,10 +32,11 @@ class RunTool(QtCore.QThread):
 					string=string+x+(" "*27)
 			except Exception as e:
 				print "[*] Exception : "+str(e)
+				string=""
 			self.emit(SIGNAL('update_zbid(QString)'),QtCore.QString(str(string)))
 			self.close()
 
-		if(self.tool == "zbdump"):
+		elif(self.tool == "zbdump"):
 			try:
 				params=self.parameters.split(" ")
 				list=["python","killerbee/tools/zbdump"]+params
@@ -48,3 +48,13 @@ class RunTool(QtCore.QThread):
 			self.emit(SIGNAL('zbdump_complete(QString)'),QtCore.QString(str(output)))
 			self.close()
 
+		elif(self.tool == "zbwireshark"):
+			try:
+				params=self.parameters.split(" ")
+				list=["python","killerbee/tools/zbwireshark"]+params
+				p1=subprocess.Popen(list)
+				print(list)
+			except Exception as e:
+				print "[*] Exception : "+str(e)
+
+		
