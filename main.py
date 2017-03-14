@@ -5,6 +5,7 @@ from src.RunTool import RunTool
 from src.ToolConfig import ToolConfig
 from UI.Main import Ui_MainWindow
 from UI.Config import Ui_Form
+import os
 import sys
 
 class ZBMain(Ui_MainWindow):
@@ -38,7 +39,10 @@ class ZBMain(Ui_MainWindow):
 		self.actionExit.triggered.connect(self.exit)
 		self.pushButton_zbidRefresh.clicked.connect(self.zbidRefresh)
 		self.pushButton_zbdumpCapture.clicked.connect(self.zbdumpCapture)
-
+		self.pushButton_zbwsStart.clicked.connect(self.zbwsstart)
+		self.pushButton_zbstmblrStart.clicked.connect(self.zbstmblrStart)
+		self.zbstumblerProc=QtCore.QProcess()
+		self.zbstumblerProc.readyRead.connect(self.zbstumblerRead)
 
 	def exit(self):
 		self.close()
@@ -94,7 +98,30 @@ class ZBMain(Ui_MainWindow):
 	def zdumpOutput(self,QString):
 		print("[*] ZBDump complete ")
 
+	def zbwsstart(self):
+		iface=str("-i "+self.lineEdit_zbwsInterface.text()+" ")
+                channel=str("-c "+self.comboBox_zbwsChannel.currentText()+" ")
+                count=str("-n "+self.lineEdit_zbwscount.text())
+		parameters=iface+channel+count
+		self.zbwsThread=RunTool("zbwireshark",parameters)
+		self.zbwsThread.start()
 
+	def zbstmblrStart(self):
+		cwd=os.getcwd()
+		print cwd
+		params=[]
+		channel=self.comboBox_zbstmblrChannel.currentText()
+		verbose=self.checkBox_zbstmblrVerbose.isChecked()
+		parameters="None"
+		self.zbstumblerProc.start("python killerbee/tools/zbstumbler -c 20")
+
+
+        def zbstumblerRead(self):
+		print "[*] Debug "
+                cursor=self.textEdit_zbstmblrConsole.textCursor()
+                cursor.movePosition(cursor.End)
+                cursor.insertText(str(self.zbstumblerProc.readAll()))
+                self.textEdit_zbstmblrConsole.ensureCursorVisible()
 
 
 if __name__=="__main__":
