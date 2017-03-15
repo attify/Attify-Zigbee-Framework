@@ -57,4 +57,13 @@ class RunTool(QtCore.QThread):
 			except Exception as e:
 				print "[*] Exception : "+str(e)
 
-		
+		elif(self.tool== "zbreplay"):
+			try:
+				list=self.parameters.split(" ")
+				output=subprocess.check_output(["python","killerbee/tools/zbreplay"]+list)
+				self.emit(SIGNAL('zbreplay_complete(QString)'),QtCore.QString(str(output)))
+
+			except Exception as e:
+				print "[*] Exception : "+str(e)
+                                self.emit(SIGNAL('zbreplay_complete(QString)'),QtCore.QString("Error"))
+			self.close()
