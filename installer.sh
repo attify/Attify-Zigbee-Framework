@@ -20,24 +20,26 @@ printf "${NORMAL}"
 
 sleep 1
 
-printf "${GREEN}[*] Installing dependencies ${NORMAL}\n\n"
+printf "\n\n${GREEN}[*] Installing dependencies ${NORMAL}\n\n"
 sudo apt-get install python-gtk2 python-cairo python-usb python-crypto python-serial python-dev libgcrypt-dev
 
-printf "${GREEN}[*] Installing Killerbee ${NORMAL}\n\n"
+printf "\n\n${GREEN}[*] Getting PyQt ${NORMAL} \n\n "
+sudo apt-get install python-qt4
+
+printf "\n\n${GREEN}[*] Installing Killerbee ${NORMAL}\n\n"
 cd killerbee
 sudo python setup.py install
 
-printf "${GREEN}[*] All done! ${NORMAL} "
+printf "\n\n${GREEN}[*] All done! ${NORMAL} \n\n"
 
-echo "[*] Bye now!"
 
-printf "${RED}"
-echo " _______________"
-echo "( Happy hacking )"
-echo " ---------------"
-echo "        o   ^__^"
-echo "         o  (oo)\_______"
-echo "            (__)\       )\/\"
-echo "                ||----w |"
-echo "                ||     ||"
+printf "${GREEN}"
+printf " _______________              \n"
+printf "( Happy hacking )   	      \n"
+printf " ---------------    	      \n"
+printf "        o   ^__^     	      \n"
+printf "         o  (oo)\______       \n"
+printf "            (__)\       )\/\  \n"
+printf "                ||----w |     \n"
+printf "                ||     ||     \n"
 printf "${NORMAL}\n"
