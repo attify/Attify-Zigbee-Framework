@@ -1,4 +1,4 @@
-!/bin/bash
+!#/bin/bash
 
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
@@ -29,6 +29,9 @@ sudo apt-get install python-qt4
 printf "\n\n${GREEN}[*] Installing Killerbee ${NORMAL}\n\n"
 cd killerbee
 sudo python setup.py install
+
+printf "\n\n${GREEN}[*] Installing wireshark ${NORMAL}\n\n"
+sudo apt-get install wireshark
 
 printf "\n\n${GREEN}[*] All done! ${NORMAL} \n\n"
 
