@@ -48,6 +48,7 @@ class ZBMain(Ui_MainWindow):
 		self.pushButton_zbstmblrStart.clicked.connect(self.zbstmblrStart)
 		self.zbstumblerProc=QtCore.QProcess()
 		self.zbstumblerProc.readyRead.connect(self.zbstumblerRead)
+                #self.zbstumblerProc.readyReadStandardError.connect(self.zbstumblerError)
 		self.pushButton_zbreplay.clicked.connect(self.zbreplayRun)
 		self.zbreplay_updatePcap()
 		self.zbreplayThread=None
@@ -120,7 +121,7 @@ class ZBMain(Ui_MainWindow):
                 	QtCore.QObject.connect(self.zbdumpThread,QtCore.SIGNAL("zbdump_complete(QString)"), self.zdumpOutput)
 		else:
 			self.pushButton_zbdumpCapture.setText("Start Capture")
-			zbdumpThread.close()
+			self.zbdumpThread.close()
 			print "[*] Stopping zbdump"
 			self.zbdumpThread=None
 
@@ -138,20 +139,23 @@ class ZBMain(Ui_MainWindow):
 
 	def zbstmblrStart(self):
 		cwd=os.getcwd()
-		print cwd
 		params=[]
 		channel=self.comboBox_zbstmblrChannel.currentText()
 		verbose=self.checkBox_zbstmblrVerbose.isChecked()
 		parameters="None"
-		self.zbstumblerProc.start("python",["killerbee/tools/zbstumbler"])
-
+		self.zbstumblerProc.start("python",["killerbee/tools/zbstumbler","-v"])
 
         def zbstumblerRead(self):
 		print "[*] Debug "
                 cursor=self.textEdit_zbstmblrConsole.textCursor()
                 cursor.movePosition(cursor.End)
-                cursor.insertText(str(self.zbstumblerProc.readAll()))
+                output=str(self.zbstumblerProc.readAll())
+		if output:
+			print "otpt"
+                	cursor.insertText(output)
                 self.textEdit_zbstmblrConsole.ensureCursorVisible()
+
+
 
 	def zbreplayRun(self):
 		if self.zbreplayThread == None:
