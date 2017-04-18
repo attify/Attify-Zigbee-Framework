@@ -10,7 +10,7 @@ from PyQt4.QtCore import SIGNAL
 from UI.Base import Ui_MainWindow
 from src.kbi import RavenRefresh,ZBDumpThread,ZBReplayThread
 from src.ztmThread import ZBStumblerThread
-import sys,subprocess
+import sys,subprocess,os,fnmatch
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -28,10 +28,26 @@ class AZFMain(Ui_MainWindow):
 		self.zbdumpThread=None
 		self.zbreplayThread=None
 		self.ravenRefresh()
+		self.pcapRefresh()
 		self.pushButton_Refresh.clicked.connect(self.ravenRefresh)
 		self.pushButton_zbstumbler.clicked.connect(self.zbstumblerRun)
 		self.pushButton_Zbdump.clicked.connect(self.zdump)
 		self.pushButton_Zbreplay.clicked.connect(self.zbreplay)
+
+        def pcapRefresh(self):
+                #Function to add pcap files to the file slectors
+                print("[*] pcapRefresh invoked ")
+                self.statusbar.showMessage(" AZF | Refreshing Pcap Files ",2000)
+                path="pcap/"
+                pattern="*.pcap"
+                result=[]
+                for root, dirs, files in os.walk(path):
+                        for name in files:
+                                if fnmatch.fnmatch(name, pattern):
+                                        result.append(os.path.join(name))
+		print result
+                self.zbreplayFile.clear()
+                self.zbreplayFile.addItems(result)
 
 	def ravenRefresh(self):
 		print "[*] Executing Raven Refresh "
@@ -107,6 +123,7 @@ class AZFMain(Ui_MainWindow):
 		self.statusbar.showMessage(" AZF | Stopping zbdump",1500)
                 self.pushButton_Zbdump.setText("Start Capture")
                 self.zbdumpThread=None
+		self.pcapRefresh()
 
 
 	def zbreplay(self):
