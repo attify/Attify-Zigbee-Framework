@@ -221,9 +221,9 @@
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>140</y>
+        <y>120</y>
         <width>551</width>
-        <height>191</height>
+        <height>211</height>
        </rect>
       </property>
       <property name="frameShape">
@@ -274,8 +274,8 @@
       <widget class="QLabel" name="attifyWebLink">
        <property name="geometry">
         <rect>
-         <x>50</x>
-         <y>120</y>
+         <x>40</x>
+         <y>140</y>
          <width>411</width>
          <height>21</height>
         </rect>
@@ -287,14 +287,40 @@
       <widget class="QLabel" name="AttifyStoreLink">
        <property name="geometry">
         <rect>
-         <x>50</x>
-         <y>150</y>
+         <x>40</x>
+         <y>170</y>
          <width>371</width>
          <height>21</height>
         </rect>
        </property>
        <property name="text">
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://attify-store.com&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#0000ff;&quot;&gt;Buy tools at - attify-store.com &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="killerbeeLink">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>90</y>
+         <width>511</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The framework is created on top of the &lt;a href=&quot;https://github.com/riverloopsec/killerbee&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#0000ff;&quot;&gt;killerbee framework by riverloop&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_18">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>110</y>
+         <width>161</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>sec.</string>
        </property>
       </widget>
      </widget>

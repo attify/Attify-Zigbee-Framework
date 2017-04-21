@@ -35,6 +35,12 @@ class AZFMain(Ui_MainWindow):
 		self.pushButton_Zbdump.clicked.connect(self.zdump)
 		self.pushButton_Zbreplay.clicked.connect(self.zbreplay)
 		self.wiresharkStart.clicked.connect(self.zbwireshark)
+                self.attifyWebLink.setOpenExternalLinks(True)
+                self.AttifyStoreLink.setOpenExternalLinks(True)
+                self.killerbeeLink.setOpenExternalLinks(True)
+
+
+
 
         def pcapRefresh(self):
                 #Function to add pcap files to the file slectors
