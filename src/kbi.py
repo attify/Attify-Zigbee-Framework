@@ -75,3 +75,22 @@ class ZBReplayThread(QtCore.QThread):
 
 
 
+class ZBWireShark(QtCore.QThread):
+        def __init__(self,channel,count):
+                super(ZBWireShark,self).__init__()
+                self.channel=channel
+                self.count=count
+
+        def __del__(self):
+                self.wait()
+
+        def close(self):
+                self.terminate()
+
+        def run(self):
+                print "[*] Running ZBWireshark Thread"
+		if self.count == None:
+			string=" -n "+str(count)
+		else:
+			string=""
+                p1=subprocess.Popen(str("python killerbee/tools/zbwireshark -c "+str(self.channel)+string).split())
