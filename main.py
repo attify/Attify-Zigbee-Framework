@@ -8,7 +8,7 @@ from PyQt4 import QtCore,QtGui
 from PyQt4.QtGui import QAction,QIcon
 from PyQt4.QtCore import SIGNAL
 from UI.Base import Ui_MainWindow
-from src.kbi import RavenRefresh,ZBDumpThread,ZBReplayThread
+from src.kbi import RavenRefresh,ZBDumpThread,ZBReplayThread,ZBWireShark
 from src.ztmThread import ZBStumblerThread
 import sys,subprocess,os,fnmatch
 
@@ -27,12 +27,14 @@ class AZFMain(Ui_MainWindow):
 		self.zbstumblerThread=None
 		self.zbdumpThread=None
 		self.zbreplayThread=None
+		self.zbwiresharkThread=None
 		self.ravenRefresh()
 		self.pcapRefresh()
 		self.pushButton_Refresh.clicked.connect(self.ravenRefresh)
 		self.pushButton_zbstumbler.clicked.connect(self.zbstumblerRun)
 		self.pushButton_Zbdump.clicked.connect(self.zdump)
 		self.pushButton_Zbreplay.clicked.connect(self.zbreplay)
+		self.wiresharkStart.clicked.connect(self.zbwireshark)
 
         def pcapRefresh(self):
                 #Function to add pcap files to the file slectors
@@ -45,7 +47,6 @@ class AZFMain(Ui_MainWindow):
                         for name in files:
                                 if fnmatch.fnmatch(name, pattern):
                                         result.append(os.path.join(name))
-		print result
                 self.zbreplayFile.clear()
                 self.zbreplayFile.addItems(result)
 
@@ -151,6 +152,26 @@ class AZFMain(Ui_MainWindow):
                 self.statusbar.showMessage(" AZF | Stopping zbreplay",1500)
                 self.pushButton_Zbreplay.setText("Start Replay")
                 self.zbreplayThread=None
+
+	def zbwireshark(self):
+		count=None
+		channel=self.wiresharkChannel.text()
+		try:
+			count=self.wiresharkCount.text()
+		except Exception as e:
+			print "[*] Zbwireshark count error : "+str(e)
+		if self.zbwiresharkThread==None:
+			print "[*] Starting ZBWireshark"
+			self.statusbar.showMessage(" AZF | Starting ZBWireshark ",2000)
+			self.wiresharkStart.setText(" Stop Wireshark ")
+			self.zbwiresharkThread=ZBWireShark(channel,count)
+			self.zbwiresharkThread.start()
+		else:
+                        print "[*] Stopping ZBWireshark"
+                        self.statusbar.showMessage(" AZF | Stopping ZBWireshark ",2000)
+                        self.wiresharkStart.setText(" Launch Wireshark ")
+                        self.zbwiresharkThread.close()
+			self.zbwiresharkThread=None
 
 
 if __name__=="__main__":
