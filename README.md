@@ -3,6 +3,6 @@
 GUI wrapper for killerbee
 
 ## Installation
-- Run setup.sh
+- Run `installer.sh`
 
  
